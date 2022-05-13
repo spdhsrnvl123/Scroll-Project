@@ -72,11 +72,11 @@ section {
   position: absolute;
   z-index: -1;
   box-shadow: 1px 1px 10px gray;
-  bottom: -35%;
+  bottom: -30%;
   left: 48%;
   transform: translate("-50%", "-50%");
   width: 18px;
-  height: 210px;
+  height: 161px;
   background-color: #f8eae1;
 }
 
@@ -116,7 +116,7 @@ section {
   content: "";
   position: absolute;
   z-index: -1;
-  box-shadow: 1px 1px 10px gray;
+  box-shadow: 1px -10px 10px gray;
   bottom: -80%;
   left: 48%;
   transform: translate("-50%", "-50%");
@@ -124,19 +124,37 @@ section {
   height: 40vh;
   background-color: #f8eae1;
 }
-
 /* ------------------------------------------------------------------ */
-.section-1 {
+.section-1-border-container {
   position: absolute;
   z-index: 99;
-  height: 100vh;
+  height: 300vh;
   width: 100%;
 }
+
 .section-1 .section-1_container {
   max-width: 80%;
   margin: 0 auto;
   height: 100%;
-  box-shadow: -1px -1px 10px gray;
+  box-shadow: 10px 16px 10px 10px gray;
   background-color: #f8eae1;
   border-radius: 100px;
+  display: flex;
+  justify-content: center;
+}
+.section-1 .section-1_container .message {
+  position: fixed;
+  top: 20%;
+  display: none;
+  /* opacity: 0; */
+}
+.section-1 .section-1_container .message p {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#show-scene-0 .section-0 .message,
+#show-scene-1 .section-1 .message,
+#show-scene-2 .section-2 .message {
+  display: block;
 }
