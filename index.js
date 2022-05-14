@@ -1,9 +1,7 @@
-
 (() => {
     let currentScene = 0;
     let prevScrollHeight = 0;
     let yOffset = 0;
-    let totalHeight = 0;
     let error_protect = false;
 
     const scene = [
@@ -20,9 +18,18 @@
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-1"),
-                message_A: document.querySelector("#scroll-section-1 .message_A")
+                message_A: document.querySelector("#scroll-section-1 .message_A"),
+                message_B: document.querySelector("#scroll-section-1 .message_B"),
+                message_C: document.querySelector("#scroll-section-1 .message_C")
             },
-            value: [0, 1, { start: 0.1, end: 0.3 }]
+            value: {
+                messageA_opacity_in: [0, 1, { start: 0, end: 0.1 }],
+                messageA_opacity_out: [1, 0, { start: 0.15, end: 0.2 }],
+                messageB_opacity_in: [0, 1, { start: 0.3, end: 0.4 }],
+                messageB_opacity_out: [1, 0, { start: 0.45, end: 0.5 }],
+                messageC_opacity_in: [0, 1, { start: 0.6, end: 0.7 }],
+                messageC_opacity_out: [1, 0, { start: 0.75, end: 0.8 }]
+            }
         },
         {
             //section-2
@@ -48,14 +55,14 @@
         totalHeight = 0;
         for (let i = 0; i < scene.length; i++){
             totalHeight += scene[i].scrollHeight;
-            if (totalHeight >= yOffset) {
+            if (totalHeight >= pageYOffset) {
                 currentScene = i;
                 break;
             }
         }
         document.body.setAttribute('id', `show-scene-${currentScene}`);
     }
-    set_Height();
+    // set_Height();
 
     const calculate = (value,currentYOffset) => {
         let result;
@@ -63,9 +70,14 @@
         let end_point = value[2].end * scene[currentScene].scrollHeight;
         let animation_point = end_point - start_point;
 
-        console.log(animation_point)
+        if (currentYOffset >= start_point && currentYOffset <= end_point) {
+            result = (currentYOffset - start_point) / animation_point * (value[1]-value[0]) + value[0];         
+        } else if (currentYOffset < start_point) {
+            result = value[0]
+        } else if (currentYOffset > end_point) {
+            result = value[1]
+        }
 
-        result = currentYOffset / animation_point;
         return result;
     }
 
@@ -73,18 +85,31 @@
         let currentYOffset = 0;
         currentYOffset = yOffset - prevScrollHeight;
         scrollRatio = currentYOffset / scene[currentScene].scrollHeight //현재 씬의 비율.
-        let value = scene[1].value;
-        // console.log(value)
+        let value = scene[currentScene].value;
+        console.log(scrollRatio)
         switch (currentScene) {
             case 0:
                 // console.log('0 paly');
                 break;
             case 1:
-                scene[1].objs.message_A.style.opacity = calculate(value, currentYOffset)
-                // console.log('1 paly'); 
+                if (scrollRatio <= 0.12) {
+                    scene[currentScene].objs.message_A.style.opacity = calculate(value.messageA_opacity_in, currentYOffset);                
+                } else {
+                    scene[currentScene].objs.message_A.style.opacity = calculate(value.messageA_opacity_out, currentYOffset);                
+                }
+                if (scrollRatio <= 0.42) {
+                    scene[currentScene].objs.message_B.style.opacity = calculate(value.messageB_opacity_in, currentYOffset);
+                } else {
+                    scene[currentScene].objs.message_B.style.opacity = calculate(value.messageB_opacity_out, currentYOffset);
+                }
+                if (scrollRatio <= 0.72) {
+                    scene[currentScene].objs.message_C.style.opacity = calculate(value.messageC_opacity_in, currentYOffset);
+                } else {
+                    scene[currentScene].objs.message_C.style.opacity = calculate(value.messageC_opacity_out, currentYOffset);
+                }
+
                 break;
             case 2:
-                // console.log('2 paly');
                 break;
         }
     }
@@ -119,6 +144,8 @@
         yOffset = pageYOffset;
         update();
     })
+    window.addEventListener('load', set_Height);
     
+    window.addEventListener('resize', set_Height);
 
 })();
