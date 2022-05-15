@@ -25,10 +25,19 @@
             value: {
                 messageA_opacity_in: [0, 1, { start: 0, end: 0.1 }],
                 messageA_opacity_out: [1, 0, { start: 0.15, end: 0.2 }],
+                messageA_translateY_in: [30, 0, { start: 0, end: 0.1 }],
+                messageA_translateY_out: [0, -40, { start: 0.15, end: 0.2 }],
+                
                 messageB_opacity_in: [0, 1, { start: 0.3, end: 0.4 }],
                 messageB_opacity_out: [1, 0, { start: 0.45, end: 0.5 }],
+                messageB_translateY_in: [30, 0, { start: 0.3, end: 0.4 }],
+                messageB_translateY_out: [0, -40, { start: 0.45, end: 0.5 }],
+                
                 messageC_opacity_in: [0, 1, { start: 0.6, end: 0.7 }],
-                messageC_opacity_out: [1, 0, { start: 0.75, end: 0.8 }]
+                messageC_opacity_out: [1, 0, { start: 0.75, end: 0.8 }],
+                messageC_translateY_in: [30, 0, { start: 0.6, end: 0.7 }],
+                messageC_translateY_out: [0, -450, { start: 0.75, end: 0.8 }],
+
             }
         },
         {
@@ -94,18 +103,24 @@
             case 1:
                 if (scrollRatio <= 0.12) {
                     scene[currentScene].objs.message_A.style.opacity = calculate(value.messageA_opacity_in, currentYOffset);                
+                    scene[currentScene].objs.message_A.style.transform = `translateY(${calculate(value.messageA_translateY_in,currentYOffset)}px)`
                 } else {
                     scene[currentScene].objs.message_A.style.opacity = calculate(value.messageA_opacity_out, currentYOffset);                
+                    scene[currentScene].objs.message_A.style.transform = `translateY(${calculate(value.messageA_translateY_out,currentYOffset)}px)`
                 }
                 if (scrollRatio <= 0.42) {
                     scene[currentScene].objs.message_B.style.opacity = calculate(value.messageB_opacity_in, currentYOffset);
+                    scene[currentScene].objs.message_B.style.transform = `translateY(${calculate(value.messageB_translateY_in,currentYOffset)}px)`
                 } else {
                     scene[currentScene].objs.message_B.style.opacity = calculate(value.messageB_opacity_out, currentYOffset);
+                    scene[currentScene].objs.message_B.style.transform = `translateY(${calculate(value.messageB_translateY_out,currentYOffset)}px)`
                 }
                 if (scrollRatio <= 0.72) {
                     scene[currentScene].objs.message_C.style.opacity = calculate(value.messageC_opacity_in, currentYOffset);
+                    scene[currentScene].objs.message_C.style.transform = `translateY(${calculate(value.messageC_translateY_in,currentYOffset)}px)`
                 } else {
                     scene[currentScene].objs.message_C.style.opacity = calculate(value.messageC_opacity_out, currentYOffset);
+                    scene[currentScene].objs.message_C.style.transform = `translateY(${calculate(value.messageC_translateY_out,currentYOffset)}px)`
                 }
 
                 break;
