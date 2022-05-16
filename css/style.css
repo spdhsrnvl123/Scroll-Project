@@ -5,6 +5,7 @@ section {
   background-attachment: fixed;
   height: 100vh;
 }
+
 .menu {
   position: fixed;
   z-index: 999;
@@ -202,14 +203,12 @@ section {
 }
 .section-1 .section-1_container .message .app {
   position: absolute;
-  top: -33%;
+  top: -45%;
   right: 15%;
-  width: 7em;
-  border-radius: 30px;
-  border-bottom: 60px solid;
-  border-top: 60px solid;
-  border-left: 10px solid;
-  border-right: 10px solid;
+  width: 9.7em;
+  height: 20em;
+  border-radius: 20px;
+  border: 3px solid black;
   box-shadow: 3px -2px 5px gray;
 }
 
