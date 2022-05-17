@@ -40,7 +40,7 @@ section {
 }
 .section-0 {
   height: 100vh;
-  background: linear-gradient(180deg, #e4af99, white);
+  background: linear-gradient(180deg, powderblue, white);
 }
 .section-0 .introduction {
   position: absolute;
@@ -49,19 +49,20 @@ section {
   left: 16%;
   line-height: 2.5em;
   color: white;
-  text-shadow: 1px 5px 10px gray;
   letter-spacing: -0.1em;
   line-height: 2em;
 }
 .section-0 .introduction h1 {
   font-size: 2.5vw;
   letter-spacing: -0.13em;
+  text-shadow: 1px 5px 10px gray;
 }
 .section-0 .introduction .title {
   display: flex;
 }
 .section-0 .introduction p {
   font-size: 1.6vw;
+  color: black;
 }
 .section-0 .circle {
   position: relative;
@@ -221,7 +222,7 @@ section {
 /* ------------------------------------------------------------------ */
 
 .section-2 {
-  background: linear-gradient(360deg, #e4af99, white);
+  background: linear-gradient(360deg, powderblue, white);
 }
 #box-container {
   padding-top: 40px;
@@ -232,7 +233,7 @@ section {
 }
 .box {
   width: 20em;
-  background-color: #c2baaf;
+  background-color: powderblue;
   padding: 30px;
   border-radius: 40px;
   background-position-y: -6em;
