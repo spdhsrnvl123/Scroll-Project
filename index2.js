@@ -34,6 +34,25 @@ window.onload = () => {
     
     // ------------------------------------------------------------------------
 
-    
+    const circle = document.querySelector(".circle");
+    // const showing = document.querySelector(".showing");
 
+    console.log(circle.firstElementChild);
+
+    const slide_show = () => {
+        const current_slide = document.querySelector(".showing");
+        if (current_slide) {
+            current_slide.classList.remove("showing");
+            const next_slide = current_slide.nextElementSibling;
+            if (next_slide) {
+                next_slide.classList.add("showing");
+            } else {
+                circle.firstElementChild.classList.add("showing");
+            }
+        } else {
+            circle.firstElementChild.classList.add("showing");
+        }
+    }
+
+    setInterval(slide_show, 2000);
 }
